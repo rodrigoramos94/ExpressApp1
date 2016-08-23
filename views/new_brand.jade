@@ -1,0 +1,88 @@
+﻿extends layout
+
+block scripts1
+    script(src='/javascripts/jquery-1.10.2.min.js')
+    script(type='text/javascript' src="/javascripts/util.js")
+    script(type='text/javascript' src="/javascripts/new_brand.js")
+
+block content
+  form#brands_form(method="post" action="/create_brand")
+      h2 #{title}
+        // Button (Double)
+        .form-group.pull-right
+            button#save_btn.btn.btn-success(name='save_btn' type='submit' value='Submit') Save
+            button.btn.btn-danger(type="button" name="cancel" value="Cancel" style='margin-left:5px' onclick="window.location='/new_brand'") Cancel
+      hr 
+      fieldset
+        .row
+            // Name 
+            .form-group.col-lg-6.col-md-6.col-sm-6
+              label.control-label(for='name') Name    
+              input#name.form-control.input-md(name='name', type='text', placeholder="ex: MAC, L'Oreal...", required='')
+
+            // Creation-year 
+            .form-group.col-lg-6.col-md-6.col-sm-6
+              label.control-label(for='creation_year') Works since
+              input#creation_year.form-control.input-md(name='creation_year', type='text', placeholder='1982, 2002, 2014...' onkeypress='return event.charCode >= 48 && event.charCode <= 57')
+
+        .row
+            // Select Country
+            .form-group.col-lg-6.col-md-6.col-sm-6
+              label.control-label(for='country') Select Country
+              div
+                select#country.form-control(name='country')
+                  each val, index in countries
+                    option(value=val)= val 
+
+            // Brief-description 
+            .form-group.col-lg-6.col-md-6.col-sm-6
+                label.control-label(for='short_description') Brief description   
+                input#short_description.form-control.input-md(name='short_description', type='text', placeholder="ex: M·A·C - Make-up Art Cosmetics", required='')
+
+        .row
+            // Multiple Checkboxes
+            .form-group.col-lg-6.col-md-6.col-sm-6
+              label.control-label(for='specialities') Specialized in
+                each val, index in specialities   
+                    .checkbox
+                        input(type='checkbox', name='specialities', value=val)
+                        | !{val}
+
+            .form-group.col-lg-6.col-md-6.col-sm-6
+                // Website
+                .form-group
+                  label.control-label(for='website') Website
+                  .input-group
+                    span.input-group-addon http://www.
+                    input#website.form-control(name='website', placeholder='example.com', type='text', required='')        
+                // Facebook site
+                .form-group
+                  label.control-label(for='fb_site') Facebook Site
+                  .input-group
+                    span.input-group-addon http://www.facebook.com/
+                    input#fb_site.form-control(name='fb_site', placeholder='ex: MACcosmetics', type='text')
+                // Youtube site
+                .form-group
+                  label.control-label(for='website') Youtube site
+                  .input-group
+                    span.input-group-addon http://www.youtube.com/
+                    input#youtube.form-control(name='youtube', placeholder='ex: MACcosmetics', type='text')    
+                // Instagram site
+                .form-group
+                  label.control-label(for='website') Instagram site
+                  .input-group
+                    span.input-group-addon http://www.instagram.com/
+                    input#instagram.form-control(name='instagram', placeholder='ex: MACcosmetics', type='text')
+                // Twitter site
+                .form-group
+                  label.control-label(for='website') Twitter site
+                  .input-group
+                    span.input-group-addon http://www.twitter.com/
+                    input#twitter.form-control(name='twitter', placeholder='ex: MACcosmetics', type='text')
+                // Description
+                .form-group
+                    label.control-label(for='long_description') Description
+                    textarea#long_description.form-control(name='long_description' rows="10" cols="40")
+                
+    
+        

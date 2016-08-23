@@ -1,0 +1,77 @@
+﻿extends layout
+
+block scripts1
+    script(src='/javascripts/jquery-1.10.2.min.js')
+    script(type='text/javascript' src="/javascripts/util.js")
+    script(type='text/javascript' src="/javascripts/new_product.js")
+
+block content
+  form#products_form(method="post"  action="/create_product")
+      h2 #{title}
+        // Button (Double)
+        .form-group.pull-right
+            button#save_btn.btn.btn-success(type='submit' value='Submit') Save
+            button.btn.btn-danger(type="button" name="cancel" value="Cancel" style='margin-left:5px' onclick="window.location='/new_product'") Cancel
+      hr
+      fieldset
+        .row
+            // Name 
+            .form-group.col-lg-6.col-md-6.col-sm-6
+              label.control-label(for='name') Name    
+              input#name.form-control.input-md(name='name', type='text', required='')
+            // Brief-description 
+            .form-group.col-lg-6.col-md-6.col-sm-6
+                label.control-label(for='short_description') Brief description   
+                input#short_description.form-control.input-md(name='short_description', type='text', placeholder="eg: M·A·C - Make-up Art Cosmetics")            
+
+        .row
+            // Select Type
+            .form-group.col-lg-6.col-md-6.col-sm-6
+              label.control-label(for='type') Select Type
+              div
+                select#brand.form-control(name='type')
+                  each val in types
+                    option(value=val)= val
+            // Select Brand
+            .form-group.col-lg-6.col-md-6.col-sm-6
+              label.control-label(for='brand') Select Brand
+              div
+                select#brand.form-control(name='brand')
+                  each val in brand_list
+                    option(value=val)= val
+
+        hr
+        .row
+            // Description
+            .form-group.col-lg-6.col-md-6.col-sm-6
+              label.control-label(for='long_description') Description
+              textarea#long_description.form-control(name='long_description' rows="5" required='')
+            // Website
+            .form-group.col-lg-6.col-md-6.col-sm-6
+                label.control-label(for='website') Website
+                input#website.form-control(name='website', placeholder='http://www.example.com/products/...', type='text', required='')
+        hr
+        .row
+            // Product Colors
+            .form-group.col-lg-6.col-md-6.col-sm-6
+              label.control-label(for="product_colors") Product Colors
+              .div
+                  button#btn_color.btn.btn-primary(name='new_color_btn' type="button") Add Color
+                  button#btn_color2.btn.btn-warning(name='delete_color_btn' type="button" style='margin-left:5px') Delete Color
+              br
+              .div#product_colors         
+
+            // Product Formats
+            .form-group.col-lg-6.col-md-6.col-sm-6
+              label.control-label(for="product_formats") Product Formats
+              .div
+                  button#btn_format.btn.btn-primary(name='new_format_btn' type="button") Add Format
+                  button#btn_format2.btn.btn-warning(name='delete_format_btn' type="button" style='margin-left:5px') Delete Format
+              br
+              .div#product_formats         
+
+                  
+
+
+
+    

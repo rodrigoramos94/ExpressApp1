@@ -1,0 +1,12 @@
+import express = require('express');
+export declare function espania(req: express.Request, res: express.Response): void;
+export declare function index(req: express.Request, res: express.Response): void;
+export declare function brands(req: express.Request, res: express.Response): void;
+export declare function products(req: express.Request, res: express.Response): void;
+export declare function new_brand(req: express.Request, res: express.Response): void;
+export declare function new_product(req: express.Request, res: express.Response): void;
+export declare function about(req: express.Request, res: express.Response): void;
+export declare function contact(req: express.Request, res: express.Response): void;
+export declare function not_access(req: express.Request, res: express.Response): void;
+export declare function create_brand(req: express.Request, res: express.Response): void;
+export declare function create_product(req: express.Request, res: express.Response): void;
