@@ -15,11 +15,11 @@ export function index(req: express.Request, res: express.Response) {
 };
 
 export function brands(req: express.Request, res: express.Response) {
-    res.render('brands', { title: 'Brands Page', year: new Date().getFullYear() });
+    mongo.findBrands(res);
 };
 
 export function products(req: express.Request, res: express.Response) {
-    res.render('products', { title: 'Products Page', year: new Date().getFullYear() });
+    mongo.findProducts(res);
 };
 
 export function new_brand(req: express.Request, res: express.Response) {

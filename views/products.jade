@@ -6,3 +6,30 @@ block content
       h1.col-lg-6.col-md-6.col-sm-6
         a.btn.btn-warning.pull-right(href='/new_product') New Product &raquo;
   hr
+  div.table-responsive
+    table.table.table-striped
+        thead
+            tr
+                th #
+                th Name
+                th Type
+                th Brand
+                th Short Description
+                th Description
+                th Colors
+                th Formats
+                th Website
+        tbody
+            - var i = 1
+            for val in product_list
+                tr
+                    td #{i++}
+                    td #{val.name}
+                    td #{val.type}
+                    td #{val.brand}
+                    td #{val.short_description}
+                    td #{val.description}
+                    td #{val.colors}
+                    td #{val.formats}
+                    td 
+                        button.btn.btn-link(type="button" href="#{val.website}") Link

@@ -43,6 +43,9 @@ block content
             // Multiple Checkboxes
             .form-group.col-lg-6.col-md-6.col-sm-6
               label.control-label(for='specialities') Specialized in
+                .checkbox
+                    input(type='checkbox', name='specialities', value="Generic")
+                    | Generic
                 each val, index in specialities   
                     .checkbox
                         input(type='checkbox', name='specialities', value=val)

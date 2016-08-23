@@ -1,4 +1,5 @@
 "use strict";
+const mongo = require('../databases/mongodb');
 const security = require('../Scripts/security');
 const brand = require('../Scripts/Brands');
 const product = require('../Scripts/Products');
@@ -14,12 +15,12 @@ function index(req, res) {
 exports.index = index;
 ;
 function brands(req, res) {
-    res.render('brands', { title: 'Brands Page', year: new Date().getFullYear() });
+    mongo.findBrands(res);
 }
 exports.brands = brands;
 ;
 function products(req, res) {
-    res.render('products', { title: 'Products Page', year: new Date().getFullYear() });
+    mongo.findProducts(res);
 }
 exports.products = products;
 ;

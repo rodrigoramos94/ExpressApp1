@@ -21,8 +21,7 @@ exports.countries = {
     19: "United Kingdom",
     20: "United States",
 };
-function getParameters(req) {
-    var p = req.body;
+function getParameters(p) {
     var values = {};
     values['name'] = p.name;
     values['country'] = p.country;
@@ -31,13 +30,13 @@ function getParameters(req) {
     values['specialities'] = p.specialities;
     values['description'] = p.long_description;
     values['website'] = "http://www." + p.website;
-    if (p.fb_site != "")
+    if (p.fb_site != "" && p.fb_site != undefined)
         values['fb_site'] = "http://www.facebook.com/" + p.fb_site;
-    if (p.youtube != "")
+    if (p.youtube != "" && p.fb_site != undefined)
         values['youtube'] = "http://www.youtube.com/" + p.youtube;
-    if (p.twitter != "")
+    if (p.twitter != "" && p.fb_site != undefined)
         values['twitter'] = "http://www.twitter.com/" + p.twitter;
-    if (p.instagram != "")
+    if (p.instagram != "" && p.fb_site != undefined)
         values['instagram'] = "http://www.instagram.com/" + p.instagram;
     return values;
 }

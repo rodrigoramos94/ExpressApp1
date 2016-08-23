@@ -5,7 +5,7 @@ const products = require('../Scripts/Products');
 const security = require('../Scripts/security');
 function create_brand(req, res) {
     if (security.proveCookie(req.headers)) {
-        mongo.insertBrand(brands.getParameters(req));
+        mongo.insertBrand(brands.getParameters(req.body));
         res.redirect("/new_brand");
     }
     else {
@@ -16,7 +16,7 @@ exports.create_brand = create_brand;
 ;
 function create_product(req, res) {
     if (security.proveCookie(req.headers)) {
-        mongo.insertProduct(products.getParameters(req));
+        mongo.insertProduct(products.getParameters(req.body));
         res.redirect("/new_product");
     }
     else {

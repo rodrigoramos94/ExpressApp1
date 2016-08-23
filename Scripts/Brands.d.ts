@@ -20,4 +20,4 @@ export declare var countries: {
     19: string;
     20: string;
 };
-export declare function getParameters(req: any): {};
+export declare function getParameters(p: any): {};

@@ -1,5 +1,7 @@
 "use strict";
 var mongoose = require('mongoose');
+const brand = require('../Scripts/Brands');
+const product = require('../Scripts/Products');
 // here will be stored the mongodb connection
 var db;
 var brand_model;
@@ -14,16 +16,6 @@ function initializedMondoDB() {
     });
 }
 exports.initializedMondoDB = initializedMondoDB;
-// inserts a brand with the information passed
-function insertBrand(params) {
-    db.collection('brands').insert(params);
-}
-exports.insertBrand = insertBrand;
-// inserts a brand with the information passed
-function insertProduct(params) {
-    db.collection('products').insert(params);
-}
-exports.insertProduct = insertProduct;
 // creates schemas for brands and products
 function initializedSchemas() {
     var brandSchema = mongoose.Schema({
@@ -43,6 +35,14 @@ function initializedSchemas() {
         collection: 'brands'
     });
     var productSchema = mongoose.Schema({
+        name: String,
+        type: String,
+        brand: String,
+        short_description: String,
+        description: String,
+        colors: [String],
+        formats: [String],
+        website: String,
         las_update: { type: Date, default: Date.now }
     }, {
         collection: 'products'
@@ -50,3 +50,62 @@ function initializedSchemas() {
     brand_model = db.model('Brand', brandSchema);
     product_model = db.model('Product', productSchema);
 }
+// inserts a brand with the information passed
+function insertBrand(params) {
+    var brand = new brand_model({
+        name: params.name,
+        creation_year: params.creation_year,
+        country: params.country,
+        short_description: params.short_description,
+        specialities: params.specialities,
+        description: params.description,
+        website: params.website,
+        fb_site: params.fb_site,
+        yb_site: params.youtube,
+        tw_site: params.twitter,
+        in_site: params.instagram
+    });
+    brand.save(function (err) {
+        if (err)
+            console.log(err);
+    });
+}
+exports.insertBrand = insertBrand;
+// inserts a brand with the information passed
+function insertProduct(params) {
+    var product = new product_model({
+        name: params.name,
+        type: params.type,
+        brand: params.brand,
+        short_description: params.short_description,
+        description: params.description,
+        colors: params.colors,
+        formats: params.formats,
+        website: params.website
+    });
+    product.save(function (err) {
+        if (err)
+            console.log(err);
+    });
+}
+exports.insertProduct = insertProduct;
+function findBrands(res) {
+    brand_model.find({}, function (err, results) {
+        var brand_list = [];
+        results.forEach(function (result) {
+            brand_list.push(brand.getParameters(result._doc));
+        });
+        res.render('brands', { title: 'Brands Page', year: new Date().getFullYear(), brand_list: brand_list });
+    });
+}
+exports.findBrands = findBrands;
+function findProducts(res) {
+    product_model.find({}, (function (err, results) {
+        var product_list = [];
+        results.forEach(function (result) {
+            product_list.push(product.getParameters(result._doc));
+        });
+        res.render('products', { title: 'Products Page', year: new Date().getFullYear(), product_list: product_list });
+    }));
+}
+exports.findProducts = findProducts;

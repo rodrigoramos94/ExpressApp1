@@ -51,4 +51,4 @@ export declare var brands: {
     29: string;
     30: string;
 };
-export declare function getParameters(req: any): {};
+export declare function getParameters(p: any): {};

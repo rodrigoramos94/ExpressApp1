@@ -6,3 +6,27 @@ block content
       h1.col-lg-6.col-md-6.col-sm-6
         a.btn.btn-warning.pull-right(href='/new_brand') New Brand &raquo;
   hr
+  div.table-responsive
+    table.table.table-striped
+        thead
+            tr
+                th #
+                th Name
+                th Country
+                th Created in
+                th Short Description
+                th Specialities
+                th Website
+                th Description
+        tbody
+            - var i = 1
+            for val in brand_list
+                tr
+                    td #{i++}
+                    td #{val.name}
+                    td #{val.country}
+                    td #{val.creation_day}
+                    td #{val.short_description}
+                    td #{val.specialities}
+                    td #{val.website}
+                    td #{val.description}

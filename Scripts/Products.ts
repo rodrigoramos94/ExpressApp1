@@ -54,14 +54,13 @@ export var brands = {
     30: 'Dose of Colours'
 }
 
-export function getParameters(req) {
-    var p = req.body;
+export function getParameters(p) {
     var values = {};
     values['name'] = p.name;
     values['type'] = p.type;
     values['brand'] = p.brand;
     values['short_description'] = p.short_description;
-    values['description'] = p.long_description;
+    values['description'] = p.description;
     values['colors'] = p.colors;
     values['formats'] = p.formats;
     values['website'] = p.website;
