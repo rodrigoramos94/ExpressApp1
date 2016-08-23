@@ -15,6 +15,7 @@
   },
   "scripts": {
     "tsc": "tsc",
-    "typings": "typings"
+    "typings": "typings",
+    "start": "node app.js"
   }
 }
